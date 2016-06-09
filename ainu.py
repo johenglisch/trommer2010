@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from trommer2010 import VI, GenRule, Language, draw_paradigm, feat
+from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
 
 
 morphemes = [
@@ -22,4 +22,4 @@ draw_paradigm(ainu)
 
 
 def derivation(s):
-    ainu.realise_cell(feat(s), verbose=True)
+    ainu.realise_cell(parse_features(s), verbose=True)

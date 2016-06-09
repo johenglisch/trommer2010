@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from trommer2010 import VI, GenRule, Language, draw_paradigm, feat
+from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
 
 
 kulung = Language(name='Kulung', trans=True, dual=True, incl=True)
@@ -31,4 +31,4 @@ draw_paradigm(kulung, ergative=True)
 
 
 def derivation(s):
-    kulung.realise_cell(feat(s, ergative=True), verbose=True)
+    kulung.realise_cell(parse_features(s, ergative=True), verbose=True)
