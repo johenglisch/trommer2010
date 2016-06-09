@@ -19,8 +19,7 @@ rules = [
     GenRule(['+3'],  [['Nom', '-3', '-pl', '+intr']])]
 
 ainu = Language(morphemes, rules, 'Ainu', trans=True)
-
-draw_paradigm(ainu)
+ainu.draw_paradigm()
 
 
 def derivation(s):

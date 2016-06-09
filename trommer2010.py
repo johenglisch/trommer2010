@@ -13,9 +13,7 @@ Generalisation of Morphemes.
 
 from copy import deepcopy
 
-__all__ = [
-    'VI', 'GenRule', 'Language',
-    'draw_paradigm', 'parse_features']
+__all__ = ['VI', 'GenRule', 'Language', 'parse_features']
 
 
 def value(boolean):
@@ -148,43 +146,6 @@ def make_table(array):
     return '\n'.join(table)
 
 
-def draw_paradigm(language, ergative=False):
-    """Print the complete paradigm of a language."""
-    persons = ['1', '1i', '2', '3']
-    if not language.incl:
-        del persons[1]
-    numbers = ['s', 'd', 'p']
-    if not language.dual:
-        del numbers[1]
-    subjects = ['%s%s' % (pers, num) for pers in persons for num in numbers
-                if not (pers == '1i' and num == 's')]
-    if language.trans:
-        objects = subjects[::]
-        pntable = list()
-        for subj in subjects:
-            row = [subj]
-            for obj in objects:
-                if any(('1' in subj and '1' in obj,
-                        '2' in subj and '2' in obj,
-                        '2' in subj and 'i' in obj,
-                        'i' in subj and '2' in obj)):
-                    row.append('')
-                else:
-                    row.append('%s>%s' % (subj, obj))
-            pntable.append(row)
-    else:
-        pntable = [[subj] for subj in subjects]
-    paradigm = [[language.realise_cell(parse_features(cell, ergative)) for cell in row]
-                for row in pntable]
-    table = [['', 'intr']]
-    if language.trans:
-        table[0].extend(subjects)
-    table.extend([[subjects[i]] + [''.join(vi.form for vi in cell)
-                                   for cell in row]
-                  for i, row in enumerate(paradigm)])
-    print(make_table(table))
-
-
 class VI(object):
     """Representation of a Vocabulary Item."""
 
@@ -289,6 +250,44 @@ class Language(object):
                 print('    %c. %s' % (chr(ord('a') + index), vi))
             input()
         return insertable
+
+    def draw_paradigm(self, ergative=False):
+        """Print the complete paradigm of a language."""
+        persons = ['1', '1i', '2', '3']
+        if not self.incl:
+            del persons[1]
+        numbers = ['s', 'd', 'p']
+        if not self.dual:
+            del numbers[1]
+        subjects = ['%s%s' % (pers, num) for pers in persons for num in numbers
+                    if not (pers == '1i' and num == 's')]
+        if self.trans:
+            objects = subjects[::]
+            pntable = list()
+            for subj in subjects:
+                row = [subj]
+                for obj in objects:
+                    if any(('1' in subj and '1' in obj,
+                            '2' in subj and '2' in obj,
+                            '2' in subj and 'i' in obj,
+                            'i' in subj and '2' in obj)):
+                        row.append('')
+                    else:
+                        row.append('%s>%s' % (subj, obj))
+                pntable.append(row)
+        else:
+            pntable = [[subj] for subj in subjects]
+        paradigm = [[self.realise_cell(parse_features(cell, ergative)) for cell in row]
+                    for row in pntable]
+        table = [['', 'intr']]
+        if self.trans:
+            table[0].extend(subjects)
+        table.extend([[subjects[i]] + [''.join(vi.form for vi in cell)
+                                    for cell in row]
+                    for i, row in enumerate(paradigm)])
+        print(make_table(table))
+
+
 
 
 if __name__ == '__main__':
