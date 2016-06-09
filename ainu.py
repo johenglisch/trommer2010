@@ -20,7 +20,3 @@ rules = [
 
 ainu = Language(morphemes, rules, transitive=True)
 ainu.draw_paradigm()
-
-
-def derivation(s):
-    ainu.realise_cell(parse_features(s), verbose=True)

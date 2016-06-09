@@ -251,6 +251,12 @@ class Language(object):
             input()
         return insertable
 
+    def show_derivation(self, feature_string):
+        """Show derivation of a single paradigm cell."""
+        self.realise_cell(
+            parse_features(feature_string, self.ergative),
+            verbose=True)
+
     def draw_paradigm(self):
         """Print the complete paradigm of a language."""
         persons = ['1', '1i', '2', '3']
