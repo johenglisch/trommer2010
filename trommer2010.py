@@ -193,23 +193,22 @@ class Language(object):
     """Representation of a language."""
 
     def __init__(self, morphemes=None, rules=None, dual=False,
-                 incl=False, trans=False):
+                 inclusive=False, transitive=False):
         """Create a language.
 
         morphemes:  List of vocabulary items of the language
         rules:      List of generalisation rules for the language
-        name:       Name of the language
 
         dual:       Set to True if the language distinguishes dual
-        incl:       Set to True if the language distinguishes 1st person incl.
-        trans:      Set to True if the language shows object agreement
+        inclusive:  Set to True if the language distinguishes 1st person incl.
+        transitive: Set to True if the language shows object agreement
 
         """
         self.morphemes = morphemes if morphemes is not None else list()
         self.rules = rules if rules is not None else list()
         self.dual = dual
-        self.incl = incl
-        self.trans = trans
+        self.inclusive = inclusive
+        self.transitive = transitive
 
     def realise_cell(self, cell, verbose=False):
         """Insert a vi into a paradigm cell"""
@@ -253,14 +252,14 @@ class Language(object):
     def draw_paradigm(self, ergative=False):
         """Print the complete paradigm of a language."""
         persons = ['1', '1i', '2', '3']
-        if not self.incl:
+        if not self.inclusive:
             del persons[1]
         numbers = ['s', 'd', 'p']
         if not self.dual:
             del numbers[1]
         subjects = ['%s%s' % (pers, num) for pers in persons for num in numbers
                     if not (pers == '1i' and num == 's')]
-        if self.trans:
+        if self.transitive:
             objects = subjects[::]
             pntable = list()
             for subj in subjects:
@@ -279,7 +278,7 @@ class Language(object):
         paradigm = [[self.realise_cell(parse_features(cell, ergative)) for cell in row]
                     for row in pntable]
         table = [['', 'intr']]
-        if self.trans:
+        if self.transitive:
             table[0].extend(subjects)
         table.extend([[subjects[i]] + [''.join(vi.form for vi in cell)
                                     for cell in row]
