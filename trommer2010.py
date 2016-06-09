@@ -71,9 +71,11 @@ def feat(string, ergative=False):
 
 
 def bundle_to_str(features):
+    """Create string representation of a feature structure."""
     return '[{}]'.format(' '.join(features))
 
 def feat_to_str(feature_sets):
+    """Create string representation of a series of feature structures."""
     return '[{}]'.format(' '.join(map(bundle_to_str, feature_sets)))
 
 
