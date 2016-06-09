@@ -6,18 +6,18 @@ def value(boolean):
     return '+' if boolean else '-'
 
 
-def bundle(string, case, intr=False):
-    """Convert person-number string into feature bundle.
+def feature_structure(string, case, intr=False):
+    """Convert person-number string to a single feature structure.
 
     Examples:
 
-    >>> bundle('1s', 'Nom', True)
+    >>> feature_structure('1s', 'Nom', True)
     ['Nom', '+1', '-2', '-3', '+sg', '-pl', '+intr']
-    >>> bundle('2p', 'Abs', True)
+    >>> feature_structure('2p', 'Abs', True)
     ['Abs', '-1', '+2', '-3', '-sg', '+pl', '+intr']
-    >>> bundle('3d', 'Erg')
+    >>> feature_structure('3d', 'Erg')
     ['Erg', '-1', '-2', '+3', '-sg', '-pl']
-    >>> bundle('1pi', 'Nom')
+    >>> feature_structure('1pi', 'Nom')
     ['Nom', '+1', '+2', '-3', '-sg', '+pl']
 
     """
@@ -27,10 +27,10 @@ def bundle(string, case, intr=False):
     sg = '{}sg'.format(value('s' in string))
     pl = '{}pl'.format(value('p' in string))
 
-    features = [case, first, second, third, sg, pl]
+    struct = [case, first, second, third, sg, pl]
     if intr:
-        features.append('+intr')
-    return features
+        struct.append('+intr')
+    return struct
 
 
 def feat(string, ergative=False):
@@ -65,9 +65,9 @@ def feat(string, ergative=False):
         return list()
     args = string.split('>', 1)
     if len(args) == 1:
-        return [bundle(string.lower(), sarg, True)]
-    return [bundle(args[0].lower(), aarg),
-            bundle(args[1].lower(), parg)]
+        return [feature_structure(string.lower(), sarg, True)]
+    return [feature_structure(args[0].lower(), aarg),
+            feature_structure(args[1].lower(), parg)]
 
 
 def bundle_to_str(features):
