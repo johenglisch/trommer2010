@@ -114,8 +114,8 @@ def make_row(row, lens):
     return '  {0}  '.format('  '.join(cells))
 
 
-def make_ascii(array):
-    """Create ascii table from array."""
+def make_table(array):
+    """Create an ascii table from an array."""
     width = len(array[0])
     height = len(array)
     lens = [max(len(array[row][col]) for row in range(height))
@@ -165,7 +165,7 @@ def draw_paradigm(language, ergative=False):
     table.extend([[subjects[i]] + [''.join(vi.form for vi in cell)
                                    for cell in row]
                   for i, row in enumerate(paradigm)])
-    print(make_ascii(table))
+    print(make_table(table))
 
 
 class VI(object):
