@@ -210,6 +210,7 @@ class Language(object):
         self.dual = dual
         self.inclusive = inclusive
         self.transitive = transitive
+        self.ergative = ergative
 
     def realise_cell(self, cell, verbose=False):
         """Insert a vi into a paradigm cell"""
@@ -250,7 +251,7 @@ class Language(object):
             input()
         return insertable
 
-    def draw_paradigm(self, ergative=False):
+    def draw_paradigm(self):
         """Print the complete paradigm of a language."""
         persons = ['1', '1i', '2', '3']
         if not self.inclusive:
@@ -276,8 +277,10 @@ class Language(object):
                 pntable.append(row)
         else:
             pntable = [[subj] for subj in subjects]
-        paradigm = [[self.realise_cell(parse_features(cell, ergative)) for cell in row]
-                    for row in pntable]
+        paradigm = [
+            [self.realise_cell(parse_features(cell, self.ergative))
+             for cell in row]
+            for row in pntable]
         table = [['', 'intr']]
         if self.transitive:
             table[0].extend(subjects)
@@ -285,8 +288,6 @@ class Language(object):
                                     for cell in row]
                     for i, row in enumerate(paradigm)])
         print(make_table(table))
-
-
 
 
 if __name__ == '__main__':
