@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-"""Verb agreement in Ainu (isolated, Japan).
+"""Verb agreement in Ainu (Isolated; Japan)."""
 
 from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
 
