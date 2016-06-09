@@ -5,9 +5,11 @@ from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
 
 limbu = Language(name='Limbu', trans=True, dual=True, incl=True)
 
-limbu.morphemes = [VI('a-',  [['Abs', '+1'], ['+2'], ['-sg']])]
+limbu.morphemes = [
+    VI('a-',  [['Abs', '+1'], ['+2'], ['-sg']])]
 
-limbu.rules = [GenRule(['Abs'], [['Abs', '+3']])]
+limbu.rules = [
+    GenRule(['Abs'], [['Abs', '+3']])]
 
 draw_paradigm(limbu, ergative=True)
 

@@ -5,9 +5,11 @@ from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
 
 karuk = Language(name='Karuk', trans=True)
 
-karuk.morphemes = [VI('-ap',  [['Acc', '+2', '+pl']])]
+karuk.morphemes = [
+    VI('-ap',  [['Acc', '+2', '+pl']])]
 
-karuk.rules = [GenRule(['+pl'], [['Nom', '+3'], ['Acc', '+2']])]
+karuk.rules = [
+    GenRule(['+pl'], [['Nom', '+3'], ['Acc', '+2']])]
 
 print('Positive indicative')
 draw_paradigm(karuk)
