@@ -218,18 +218,13 @@ class Language(object):
                  incl=False, trans=False):
         """Create a language.
 
-        :param morphemes: vocabulary entries of the language
-        :type  morphemes: list of VI
-        :param rules:     generalisation rules of the language
-        :type  rules:     list of GenRule
-        :param name:      name of the language
-        :type  name:      str
-        :param dual:      does the language distinguish dual?
-        :type  dual:      bool
-        :param incl:      does the language distinguish 1st person inclusive?
-        :type  incl:      bool
-        :param trans:     does the language agree with objects
-        :type  trans:     bool
+        morphemes:  List of vocabulary items of the language
+        rules:      List of generalisation rules for the language
+        name:       Name of the language
+
+        dual:       Set to True if the language distinguishes dual
+        incl:       Set to True if the language distinguishes 1st person incl.
+        trans:      Set to True if the language shows object agreement
 
         """
         self.morphemes = morphemes if morphemes is not None else list()
