@@ -33,25 +33,28 @@ def feature_structure(string, case, intr=False):
     return struct
 
 
-def feat(string, ergative=False):
-    """Convert a string of the form 'SUBJ>OBJ' into a feature structure.
+def parse_features(string, ergative=False):
+    """Convert a person-number string into to a list of feature structures.
+
+    Strings like 'EXT>INT' are considered transitive, whereas strings like 'ARG'
+    are considered intranstive.
 
     Examples:
 
      * Default: nominative-accusative alignment
 
-    >>> feat('1s>3s')
+    >>> parse_features('1s>3s')
     [['Nom', '+1', '-2', '-3', '+sg', '-pl'], ['Acc', '-1', '-2', '+3', '+sg', '-pl']]
-    >>> feat('1di')
+    >>> parse_features('1di')
     [['Nom', '+1', '+2', '-3', '-sg', '-pl', '+intr']]
 
      * Option: ergative-absolutive alignment
 
-    >>> feat('1s>3s', ergative=True)
+    >>> parse_features('1s>3s', ergative=True)
     [['Erg', '+1', '-2', '-3', '+sg', '-pl'], ['Abs', '-1', '-2', '+3', '+sg', '-pl']]
-    >>> feat('1di', ergative=True)
+    >>> parse_features('1di', ergative=True)
     [['Abs', '+1', '+2', '-3', '-sg', '-pl', '+intr']]
-    >>> feat('')
+    >>> parse_features('')
     []
 
     """
@@ -154,7 +157,7 @@ def draw_paradigm(language, ergative=False):
             pntable.append(row)
     else:
         pntable = [[subj] for subj in subjects]
-    paradigm = [[language.realise_cell(feat(cell, ergative)) for cell in row]
+    paradigm = [[language.realise_cell(parse_features(cell, ergative)) for cell in row]
                 for row in pntable]
     table = [['', 'intr']]
     if language.trans:
