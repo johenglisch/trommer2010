@@ -192,8 +192,8 @@ class GenRule(object):
 class Language(object):
     """Representation of a language."""
 
-    def __init__(self, morphemes=None, rules=None, dual=False,
-                 inclusive=False, transitive=False):
+    def __init__(self, morphemes=None, rules=None, dual=False, inclusive=False,
+                 transitive=False, ergative=False):
         """Create a language.
 
         morphemes:  List of vocabulary items of the language
@@ -202,6 +202,7 @@ class Language(object):
         dual:       Set to True if the language distinguishes dual
         inclusive:  Set to True if the language distinguishes 1st person incl.
         transitive: Set to True if the language shows object agreement
+        ergative:   Set to True if the language uses Erg/Abs; False for Nom/Acc.
 
         """
         self.morphemes = morphemes if morphemes is not None else list()
