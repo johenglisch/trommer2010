@@ -5,9 +5,7 @@
 from trommer2010 import *
 
 
-kulung = Language(name='Kulung', trans=True, dual=True, incl=True)
-
-kulung.morphemes = [
+morphemes = [
     VI('-o',  [['Abs', '+1', '+sg']]),
     VI('-na', [['Erg', '+1', '+sg'], ['Abs', '-1', '+2', '-pl']]),
     VI('-n',  [['Abs', '-1', '+2', '+pl']]),
@@ -17,10 +15,7 @@ kulung.morphemes = [
     VI('-am', [['Erg', '-3', '+pl'], ['Abs', '+3']]),
     VI('-ka', [['Abs', '+1', '-2', '-sg']])]
 
-print('Paradigm with predicted ranges.')
-draw_paradigm(kulung, ergative=True)
-
-kulung.rules = [
+rules = [
     GenRule(['Abs'], [['Abs', '+1', '+sg']]),
     GenRule(['Abs'], [['Abs', '+3']]),
     GenRule(['-3'],  [['Erg', '+3'], ['Abs', '+3']]),
@@ -28,9 +23,15 @@ kulung.rules = [
     GenRule(['-pl'], [['Erg', '+3'], ['Abs', '+3']]),
     GenRule(['-pl'], [['Erg', '+sg'], ['Abs', '+3']])]
 
+
+print('Paradigm with predicted ranges.')
+
+kulung = Language(
+    morphemes, dual=True, inclusive=True, transitive=True, ergative=True)
+kulung.draw_paradigm()
+
+
 print('Paradigm with actual ranges.')
-draw_paradigm(kulung, ergative=True)
 
-
-def derivation(s):
-    kulung.realise_cell(parse_features(s, ergative=True), verbose=True)
+kulung.rules = rules
+kulung.draw_paradigm()
