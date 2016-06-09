@@ -1,3 +1,16 @@
+"""trommer2010.py
+
+This is an implementation of Trommer's (2010)[1] theory of Paradigmatic
+Generalisation of Morphemes.
+
+ [1] Trommer, Jochen (2010):  Paradigmatic Generalization of Morphemes.  In:
+     Sebastian Bank, Doreen Georgi & Jochen Trommer (eds.), 2 in Agreement,
+     Linguistische Arbeits Berichte 88.  Leipzig, University of Leipzig,
+     227-246.
+
+"""
+
+
 from copy import deepcopy
 
 
