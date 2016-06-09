@@ -18,7 +18,7 @@ rules = [
     GenRule(['+pl'], [['Nom', '+1'], ['Acc', '+2', '-pl']]),
     GenRule(['+3'],  [['Nom', '-3', '-pl', '+intr']])]
 
-ainu = Language(morphemes, rules, 'Ainu', trans=True)
+ainu = Language(morphemes, rules, trans=True)
 ainu.draw_paradigm()
 
 

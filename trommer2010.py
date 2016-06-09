@@ -192,7 +192,7 @@ class GenRule(object):
 class Language(object):
     """Representation of a language."""
 
-    def __init__(self, morphemes=None, rules=None, name=None, dual=False,
+    def __init__(self, morphemes=None, rules=None, dual=False,
                  incl=False, trans=False):
         """Create a language.
 
@@ -207,7 +207,6 @@ class Language(object):
         """
         self.morphemes = morphemes if morphemes is not None else list()
         self.rules = rules if rules is not None else list()
-        self.name = name if name is not None else ''
         self.dual = dual
         self.incl = incl
         self.trans = trans
