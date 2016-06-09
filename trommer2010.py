@@ -13,6 +13,10 @@ Generalisation of Morphemes.
 
 from copy import deepcopy
 
+__all__ = [
+    'VI', 'GenRule', 'Language',
+    'draw_paradigm', 'parse_features']
+
 
 def value(boolean):
     """Return binary feature value."""

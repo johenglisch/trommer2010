@@ -2,7 +2,7 @@
 
 """Verb agreement in Limbu (Tibeto-Burman; Bhutan, India, Nepal)."""
 
-from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
+from trommer2010 import *
 
 
 limbu = Language(name='Limbu', trans=True, dual=True, incl=True)

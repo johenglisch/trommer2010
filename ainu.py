@@ -2,7 +2,7 @@
 
 """Verb agreement in Ainu (Isolated; Japan)."""
 
-from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
+from trommer2010 import *
 
 
 morphemes = [

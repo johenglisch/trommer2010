@@ -2,7 +2,7 @@
 
 """Verb agreement in Kulung (Tibeto-Burman; Nepal)."""
 
-from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
+from trommer2010 import *
 
 
 kulung = Language(name='Kulung', trans=True, dual=True, incl=True)

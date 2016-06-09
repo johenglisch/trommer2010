@@ -2,7 +2,7 @@
 
 """Verb agreement in Karuk (Hokan; USA)."""
 
-from trommer2010 import VI, GenRule, Language, draw_paradigm, parse_features
+from trommer2010 import *
 
 
 karuk = Language(name='Karuk', trans=True)
